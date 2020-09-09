@@ -1,0 +1,28 @@
+{
+  "name": "c868",
+  "version": "1.0.0",
+  "description": "Capstone for C868 Software Development",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "2.4.3",
+    "body-parser": "1.19.0",
+    "cookie-parser": "1.4.5",
+    "dotenv": "8.2.0",
+    "ejs": "3.1.5",
+    "express": "4.17.1",
+    "express-ejs-layouts": "2.5.0",
+    "moment": "2.27.0",
+    "mysql": "2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.4",
+    "jest": "26.4.2"
+  },
+  "author": "Michael Armstrong",
+  "license": "ISC"
+}

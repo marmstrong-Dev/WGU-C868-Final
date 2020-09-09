@@ -1,0 +1,31 @@
+<!--Navbar will be used on all pages except login and registration-->
+<nav class="nav text-white">
+
+    <a href="/dashboard">
+        <img style="height: 100%" src="/static/Assets/Logo.svg" alt="image not displayed" data-toggle="tooltip" data-placement="right" title="Dashboard">
+    </a>
+
+    <div class="mx-auto">
+        <h1 style="margin-top: 10px">Client Tracks</h1>
+    </div>
+
+    <div class="dropdown dropleft">
+
+        <button id="profileBtn" type="button" class="btn btn-dark text-secondary dropdown-toggle" data-toggle="dropdown"></button>
+
+        <div class="dropdown-menu">
+
+            <a href="/auth/edit" class="dropdown-item">Profile Information</a>
+            <a href="/auth/logout" class="dropdown-item">Sign Out</a>
+
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip({ trigger: 'hover' });  
+            getConsultant(); 
+        });
+    </script>
+</nav>

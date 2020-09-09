@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="/static/Styles/forms.css">
+
+<%- include('navbar.ejs') %>
+
+<p style="text-align: center" class="text-danger"><%= errorMsg %></p>
+
+<div class="formPanel card">
+
+    <div class="card-header">
+        <div style="text-align: center">
+
+            <h4><%= actionLabel %></h4>
+
+            <% if (clientInfo.clientID > 0) { %>
+
+                <form id="delRequest" method="POST" action="/clients/delete">
+
+                    <input style="display: none" type="number" value="<%= clientInfo.clientID %>" id="clientnum" name="cnum">
+                    <button id="delBtn" class="btnDel btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Delete Client">
+                        <i class="material-icons text-white">delete</i>
+                    </button>
+                
+                </form>
+
+                <div id="promptDel" class="modal">
+
+                    <div class="modal-header bg-light">
+                        <h4 class="mx-auto">Are You Sure?</h4>
+                    </div>
+                    
+                    <div class="modal-body bg-white">
+                        <p class="text-danger">Deleting this item will also delete its projects and appointments.</p>
+                        <p>Confirm Delete  -  Client ID: <%= clientInfo.clientID %></p>
+                        <button type="button" data-dismiss="modal" class="formBtn btn btn-primary" id="cancelDel">Cancel</button>
+                        <button type="button" data-dismiss="modal" class="formBtn btn btn-primary" id="confirmDel">Delete</button>
+                    </div>
+                    
+                </div>
+
+            <% } %>
+        
+        </div>
+    </div>
+
+    <div class="card-body">
+        <form class="form" action="<%= formAction %>" method="POST">
+            
+            <div class="form-group">
+                <label for="clientName">Client Name:</label>
+                <input <% if(clientInfo.clientID > 0)  {%> value="<%= clientInfo.clientName %>" <% } %> id="clientName" class="form-control" type="text" name="cname" required>
+            </div>
+
+            <div id="radioWrapper">
+                <div class="radioSpacer form-check-inline">
+                    <label class="form-check-label"l>
+                        <input id="indRdio" checked="true" type="radio" value="ind" class="form-check-input" name="clientsize">Individual
+                    </label>
+                </div>
+
+                <br/>
+                
+                <div class="radioSpacer form-check-inline">
+                    <label class="form-check-label"l>
+                    <input id="orgRdio" <% if(clientInfo.clientID > 0) { if(clientInfo.clientIsOrg === true) {%> checked="true" <% }} %> type="radio" value="org" class="form-check-input" name="clientsize">Organization
+                    </label>
+                </div>
+            </div>
+            
+            <div id="pocToggle">
+                <p>Point of Contact Information</p>
+
+                <div class="form-group">
+                    <label for="pocName">POC Name:</label>
+                <input <% if(clientInfo.clientID > 0)  {%> value="<%= clientInfo.clientPOC %>" <% } %> id="pocName" class="form-control" type="text" name="pocname">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pocEmail">Email Address:</label>
+                <input <% if(clientInfo.clientID > 0)  {%> value="<%= clientInfo.clientEmail %>" <% } %> id="pocEmail" class="form-control" type="email" name="pocemail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pocPhone">Phone Number:</label>
+                <input <% if(clientInfo.clientID > 0)  {%> value="<%= clientInfo.clientPhone %>" <% } %> id="pocPhone" class="form-control" type="tel" name="pocphone" required>
+            </div>
+
+            <div class="form-group">
+                <br/>
+                <textarea class="notesField form-control" placeholder="Notes" rows="4" name="cnotes"><% if(clientInfo.clientID > 0)  {%><%= clientInfo.clientNotes %><% } %></textarea>
+            </div>
+            <p></p>
+            <a href="/dashboard" class="formBtn btn btn-primary float-left">Cancel</a>
+            <button type="submit" class="formBtn btn btn-primary float-right">Save</button>
+        </form>
+    </div>
+
+</div>
+
+<script src="/static/Scripts/forms.js"></script>
+<script>
+    radioToggler();
+</script>

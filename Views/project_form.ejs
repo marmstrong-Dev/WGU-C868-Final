@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="/static/Styles/forms.css">
+
+<%- include('navbar.ejs') %>
+
+<p style="text-align: center" class="text-danger"><%= errorMsg %></p>
+
+<div class="formPanel card">
+
+    <div class="card-header">
+        <div style="text-align: center">
+
+            <h4 style="text-align: center"><%= actionLabel %></h4>
+
+            <% if (projectInfo.projectID > 0) { %>
+
+                <form id="delRequest" method="POST" action="/projects/delete">
+
+                    <input style="display: none" type="number" value="<%= projectInfo.projectID %>" id="projectnum" name="pnum">
+                    <button id="delBtn" class="btnDel btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Delete Project">
+                        <i class="material-icons text-white">delete</i>
+                    </button>
+                
+                </form>
+
+                <div id="promptDel" class="modal">
+
+                    <div class="modal-header bg-light">
+                        <h4 class="mx-auto">Are You Sure?</h4>
+                    </div>
+                    
+                    <div class="modal-body bg-white">
+                        <p>Confirm Delete  -  Project ID: <%= projectInfo.projectID %></p>
+                        <button type="button" data-dismiss="modal" class="formBtn btn btn-primary" id="cancelDel">Cancel</button>
+                        <button type="button" data-dismiss="modal" class="formBtn btn btn-primary" id="confirmDel">Delete</button>
+                    </div>
+                    
+                </div>
+
+            <% } %>
+        
+        </div>
+    </div>
+
+    <div class="card-body">
+        <form class="form" action="<%= formAction %>" method="POST">
+        
+            <div class="form-group">
+                <label for="projectTitle">Project Title:</label>
+                <input <% if(projectInfo.projectID > 0)  {%> value="<%= projectInfo.projectTitle %>" <% } %> id="projectTitle" class="form-control" type="text" name="ptitle">
+            </div>
+
+            <div class="form-group">
+                <label for="projectDescription">Project Description:</label>
+                <input <% if(projectInfo.projectID > 0)  {%> value="<%= projectInfo.projectDesc %>" <% } %> id="projectDescription" class="form-control" type="text" name="pdesc">
+            </div>
+
+            <div class="form-group">
+                <label for="clientName">Client Name:</label>
+                <select class="form-control" id="clientName" name="cname">
+                    <option value="0" selected disabled>Select</option>
+                </select>
+            </div>
+
+            <br/>
+
+            <div class="form-group">
+                <label for="projectStart">Projected Start Date</label>
+                <input <% if(projectInfo.projectID > 0)  {%> value="<%= projectInfo.projectStart.substr(0, 10) %>" <% } %> id="projectStart" class="form-control" type="date" name="pstart">
+            </div>
+
+            <div class="form-group">
+                <label for="projectEnd">Projected End Date</label>
+                <input <% if(projectInfo.projectID > 0)  {%> value="<%= projectInfo.projectEnd.substr(0, 10) %>" <% } %> id="projectEnd" class="form-control" type="date" name="pend">
+            </div>
+
+            <% if(projectInfo.projectID > 0)  { %>
+            <div class="form-group">
+                <label for="phaseName">Project Phase:</label>
+                <select class="form-control" id="phaseName" name="phase">
+                    <option value="Planning" <% if(projectInfo.projectPhase === "Planning") {%>selected<% } %>>Planning</option>
+                    <option value="In Development" <% if(projectInfo.projectPhase === "In Development") {%>selected<% } %>>In Development</option>
+                    <option value="Closing" <% if(projectInfo.projectPhase === "Closing") {%>selected<% } %>>Closing</option>
+                    <option value="Completed" <% if(projectInfo.projectPhase === "Completed") {%>selected<% } %>>Completed</option>
+                </select>
+            </div>
+            <% } %>
+
+            <div class="form-group">
+                <br/>
+                <textarea class="notesField form-control" placeholder="Notes" rows="4" name="pnotes"><% if(projectInfo.projectID > 0)  {%><%= projectInfo.projectNotes %><% } %></textarea>
+            </div>
+
+            <a href="/dashboard" class="formBtn btn btn-primary float-left">Cancel</a>
+            <button type="submit" class="formBtn btn btn-primary float-right">Save</button>
+
+        </form>
+    </div>
+</div>
+
+<script src="/static/Scripts/forms.js"></script>
+<script>
+    $(document).ready(function () {
+        //fetchClientList();
+        clientPrefill();
+    });
+</script>

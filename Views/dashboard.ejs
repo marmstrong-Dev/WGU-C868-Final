@@ -1,0 +1,189 @@
+<link rel="stylesheet" href="/static/Styles/dashboard.css">
+
+<%- include('navbar.ejs') %>
+
+<nav id="navBarFull"  class="navbar navbar-expand-md bg-dark">
+    <ul class="navbar-nav">
+
+        <li class="navLinksFull nav-item dropdown">
+            <a class="text-white nav-link dropdown-toggle" data-toggle="dropdown" href="#">Clients</a>
+    
+            <div class="dropdown-menu bg-dark">
+                <a class="dropdown-item text-white" href="/clients/new">Add</a>
+                <a class="dropdown-item text-white" data-toggle="modal" data-target="#clientPicklist" href="#">Edit</a>
+            </div>
+        </li>
+
+        <li class="navLinksFull nav-item dropdown">
+            <a class="text-white nav-link dropdown-toggle" data-toggle="dropdown" href="#">Projects</a>
+
+            <div class="dropdown-menu bg-dark">
+                <a class="dropdown-item text-white" href="/projects/new">Add</a>
+                <a class="dropdown-item text-white" data-toggle="modal" data-target="#projectsPickList" href="#">Edit</a>
+            </div>
+        </li>
+
+        <li class="navLinksFull nav-item dropdown">
+            <a class="text-white nav-link dropdown-toggle" data-toggle="dropdown" href="#">Appointments</a>
+
+            <div class="dropdown-menu bg-dark">
+                <a class="dropdown-item text-white" href="/appointments/new">Add</a>
+                <a class="dropdown-item text-white" data-toggle="modal" data-target="#appointmentsPickList" href="#">Edit</a>
+            </div>
+        </li>
+
+        <li class="navLinksFull nav-item dropdown">
+            <a class="text-white nav-link dropdown-toggle" data-toggle="dropdown" href="#">Reports</a>
+
+            <div class="dropdown-menu bg-dark">
+                <a class="dropdown-item text-white" href="/reports/clients">Clients</a>
+                <a class="dropdown-item text-white" href="/reports/projects">Projects</a>
+                <a class="dropdown-item text-white" href="/reports/appointments">Appointments</a>
+            </div>
+        </li>
+
+    </ul>
+</nav>
+
+<%- include('modals.ejs') %>
+
+<div>
+    <p id="testID"></p>
+    <p id="testFirst"></p>
+    <p id="testLast"></p>
+    <p id="testEmail"></p>
+</div>
+
+<div class="container-fluid">
+
+    <div class="dbRow row">
+
+        <div class="dbPanel card col-md-5">
+            <div class="dbHeader card-header">
+                <h4 style="text-align: center">Project Summary</h4>
+            </div>
+        
+            <div class="card-body">
+                <p class="lightHeading text-primary">Total Open Projects: <span class="countIndicator badge badge-primary" id="totalProjectsCount">0</span></p>
+                <br/>
+                <p class="lightHeading text-primary">By Phase</p>
+                <ul class="list-group list-group-flush">
+                    <li id="planningCount" class="list-group-item">Planning: </li>
+                    <li id="inProgressCount" class="list-group-item">In Development: </li>
+                    <li id="closingCount" class="list-group-item">Closing: </li>
+                </ul>
+
+            </div>
+        </div>
+        
+        <div class="dbPanel card col-md-5">
+            <div class="dbHeader card-header">
+                <h4 style="text-align: center">Upcoming Appointments</h4>
+            </div>
+        
+            <div class="card-body">
+                
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                          <th>Appointment Description:</th>
+                          <th>Start Time:</th>
+                          <th>End Time:</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="upcomingAppointments">
+                        
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+    <br/>
+
+    <div class="dbRow row">
+
+        <div class="dbPanel card col-md-10">
+            <div class="dbHeader card-header">
+                <h4 style="text-align: center">History</h4>
+            </div>
+        
+            <div id="historyPanel" class="card-body">
+                <div class="container-fluid"">
+
+                    <div class="row">
+                        
+                        <div class="col-lg-4">
+                            <table class="table">
+
+                                <p>Clients:</p>
+            
+                                <thead>
+                                    <tr>
+                                      <th style="width: 130px">Date:</th>
+                                      <th>Client Name:</th>
+                                    </tr>
+                                </thead>
+            
+                                <tbody id="clientHistory">
+            
+                                </tbody>
+            
+                            </table>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <table class="table">
+
+                                <p>Projects:</p>
+
+                                <thead>
+                                    <tr>
+                                      <th style="width: 130px">Date:</th>
+                                      <th>Project Title:</th>
+                                    </tr>
+                                </thead>
+            
+                                <tbody id="projectHistory">
+            
+                                </tbody>
+            
+                            </table>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <table class="table">
+
+                                <p>Appointments:</p>
+
+                                <thead>
+                                    <tr>
+                                      <th style="width: 130px">Date:</th>
+                                      <th>Appointment Description:</th>
+                                    </tr>
+                                </thead>
+            
+                                <tbody id="appointmentHistory">
+            
+                                </tbody>
+            
+                            </table>
+                        </div>
+                        
+                    </div>
+
+                </div>              
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/Scripts/dashboard.js"></script>

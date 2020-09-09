@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="/static/Styles/forms.css">
+
+<%- include('navbar.ejs') %>
+
+<p style="text-align: center" class="text-danger"><%= errorMsg %></p>
+
+<div class="formPanel card">
+
+    <div class="card-header">
+        <div style="text-align: center">
+        
+            <h4 style="text-align: center"><%= actionLabel %></h4>
+
+            <% if (appointmentInfo.appointmentID > 0) { %>
+
+                <form id="delRequest" method="POST" action="/appointments/delete">
+
+                    <input style="display: none" type="number" value="<%= appointmentInfo.appointmentID %>" id="apptnum" name="anum">
+                    <button id="delBtn" class="btnDel btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Delete Appointment">
+                        <i class="material-icons text-white">delete</i>
+                    </button>
+                
+                </form>
+
+                <div id="promptDel" class="modal">
+
+                    <div class="modal-header bg-light">
+                        <h4 class="mx-auto">Are You Sure?</h4>
+                    </div>
+                    
+                    <div class="modal-body bg-white">
+                        <p>Confirm Delete  -  Appointment ID: <%= appointmentInfo.appointmentID %></p>
+                        <button type="button" data-dismiss="modal" class="formBtn btn btn-primary" id="cancelDel">Cancel</button>
+                        <button type="button" data-dismiss="modal" class="formBtn btn btn-primary" id="confirmDel">Delete</button>
+                    </div>
+                    
+                </div>
+
+            <% } %>
+        
+        </div>        
+    </div>
+    
+    <div class="card-body">
+        <form class="form" action="<%= formAction %>" method="POST">
+        
+            <div class="form-group">
+                <label for="appointmentDesc">Appointment Description:</label>
+                <input <% if(appointmentInfo.appointmentID > 0)  {%> value="<%= appointmentInfo.appointmentDesc %>" <% } %> id="appointmentDesc" class="form-control" type="text" name="adesc" required>
+            </div>
+
+            <div class="form-group">
+                <label for="clientName">Client Name:</label>
+                <select class="form-control" id="clientName" name="cname">
+                    <option value="0" selected disabled>Select</option>
+                </select>
+            </div>
+
+            <!--<div class="form-group">
+                <label for="projectName">Project Name:</label>
+                <select class="form-control" id="projectName" name="pname">
+                    <option value="0" selected disabled>Select</option>
+                </select>
+            </div>-->
+
+            <br/>
+
+            <div class="form-group">
+                <label for="appointmentStart" class="form-label">Start Time:</label>
+                <input <% if(appointmentInfo.appointmentID > 0)  {%> value="<%= appointmentInfo.appointmentStart %>" <% } %> id="appointmentStart" class="form-control" type="datetime-local" name="astart" required>
+            </div>
+
+            <div class="form-group">
+                <label for="appointmentEnd" class="form-label">End Time:</label>
+                <input <% if(appointmentInfo.appointmentID > 0)  {%> value="<%= appointmentInfo.appointmentEnd %>" <% } %> id="appointmentEnd" class="form-control" type="datetime-local" name="aend" required>
+            </div>
+
+            <br/>
+            <p>Location Information</p>
+
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-12 form-group">
+                        <label for="appointmentStreet">Street:</label>
+                        <input <% if(appointmentInfo.appointmentID > 0)  {%> value="<%= appointmentInfo.appointmentLocationStreet %>" <% } %> id="appointmentStreet" class="form-control" type="text" name="astreet" required>
+                    </div>
+
+                    <div class=" col-8 form-group">
+                        <label for="appointmentCity">City:</label>
+                        <input <% if(appointmentInfo.appointmentID > 0)  {%> value="<%= appointmentInfo.appointmentLocationCity %>" <% } %> id="appointmentCity" class="form-control" type="text" name="acity" required>
+                    </div>
+                
+                    <div class="col-4 form-group">
+                        <label for="appointmentState">State:</label>
+                        <select class="form-control" id="appointmentState" name="astate">
+                            <option selected disabled></option>
+                        </select>
+                    </div>
+
+                </div>
+            <div>
+
+            </div>
+
+            <div class="form-group">
+                <br/>
+                <textarea class="notesField form-control" placeholder="Notes" rows="4" name="anotes"><% if(appointmentInfo.appointmentID > 0)  {%><%= appointmentInfo.appointmentNotes %><% } %></textarea>
+            </div>
+
+            <a href="/dashboard" class="formBtn btn btn-primary float-left">Cancel</a>
+            <button type="submit" class="formBtn btn btn-primary float-right">Save</button>
+
+        </form>
+    </div>
+
+</div>
+
+<script src="/static/Scripts/forms.js"></script>
+
+<script>
+    $(document).ready(function () {
+        populateStatesList();
+        clientPrefill();
+        statePrefill();
+    });
+</script>

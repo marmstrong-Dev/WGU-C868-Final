@@ -1,0 +1,36 @@
+#rWrapper {
+    justify-content: center;
+}
+
+#searchWrapper {
+    width: 375px;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#searchCategory {
+    width: 175px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+#searchContext {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+#searchBtn {
+    border-radius: 0;
+    height: 40px;
+    margin-left: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.rEntry {
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

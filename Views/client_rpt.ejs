@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="/static/Styles/reports.css">
+
+<%- include('navbar.ejs') %>
+
+<div id="searchWrapper">
+    <form class="form" method="POST" action="/reports/clients/filtered">
+
+            <div class="input-group">
+                <label class="form-control" for="searchCategory">Search By: </label>
+                <select class="form-control" id="searchCategory" name="category">
+                    <option selected disabled>Select</option>
+                    <option value="client_ID">Client ID</option>
+                    <option value="client_name">Client Name</option>
+                    <option value="client_email">Client Email</option>
+                    <option value="client_phone">Client Phone</option>
+                </select>
+            </div>
+    
+            <div class="input-group">
+                <input id="searchContext" class="form-control" type="text" name="context">
+                <button id="searchBtn" type="submit" class="btn btn-primary"><i class="material-icons text-white">search</i></button>
+            </div>
+
+            <% if(isFiltered === true) { %>
+                <div style="text-align: center"><a href="/reports/clients" class="text-primary">Remove Filters</a></div>
+            <% } %>
+
+    </form>
+</div>
+
+<div class="container-fluid">
+    <div id="rWrapper" class="row">
+
+        <% for(i=0; i < clientsList.length; i++) { %>
+
+            <div class="rEntry card col-lg-3">                
+                <div class="card-body">
+        
+                    <ul class="list-group">
+                    
+                        <li class="list-group-item"><strong class="text-primary">ID:</strong> <%= clientsList[i].client_ID %><span class="badge badge-primary badge-pill float-right"><%= clientsList[i].client_is_org %></span></li>
+                        <li class="list-group-item"><strong>Name:</strong> <%= clientsList[i].client_name %></li>
+                        <% if(clientsList[i].client_is_org === 'ORG') { %>
+                        <li class="list-group-item"><strong>Point of Contact:</strong> <%= clientsList[i].client_poc_name %></li>
+                        <% } %>
+                        <li class="list-group-item"><strong>Email:</strong> <%= clientsList[i].client_email %></li>
+                        <li class="list-group-item"><strong>Phone:</strong> <%= clientsList[i].client_phone %></li>
+                        <br/>
+                        <li class="list-group-item"><strong>Notes:</strong><br/><%= clientsList[i].client_notes %></li>
+                        <br/>
+                        <li class="list-group-item"><strong>Created On: </strong><%= clientsList[i].client_created %></li>
+                        <% if(clientsList[i].client_modified != "Invalid date") { %>
+                        <li class="list-group-item"><strong>Last Modified: </strong><%= clientsList[i].client_modified %></li>
+                        <% } %>
+                    </ul>
+
+                </div>
+            </div>
+
+        <% } %>
+
+    </div>
+</div>

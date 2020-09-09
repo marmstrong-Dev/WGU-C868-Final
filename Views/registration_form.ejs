@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="/static/Styles/forms.css">
+
+<nav class="nav text-white">
+    <h1 class="mx-auto">Sales Tracker</h1>
+</nav>
+
+<p style="text-align: center" class="text-danger"><%= errorMsg %></p>
+
+<div class="formPanel card">
+
+    <div class="card-header">
+        <div style="text-align: center">
+
+            <h4 style="text-align: center"><%= actionLabel %></h4>
+
+            <% if (consultantInfo.consultantID > 0) { %>
+
+                <form id="delRequest" method="POST" action="/auth/delete">
+
+                    <input style="display: none" type="number" value="<%= consultantInfo.consultantID %>" id="clientnum" name="unum">
+                    <button id="delBtn" class="btnDel btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Delete Profile">
+                        <i class="material-icons text-white">delete</i>
+                    </button>
+                
+                </form>
+
+                <div id="promptDel" class="modal">
+
+                    <div class="modal-header bg-light">
+                        <h4 class="mx-auto">Are You Sure?</h4>
+                    </div>
+                    
+                    <div class="modal-body bg-white">
+                        <p class="text-danger">Deleting this item will also delete your clients, projects and appointments.</p>
+                        <p>Confirm Delete  -  Consultant ID: <%= consultantInfo.consultantID %></p>
+                        <button type="button" data-dismiss="modal" class="formBtn btn btn-primary" id="cancelDel">Cancel</button>
+                        <button type="button" data-dismiss="modal" class="formBtn btn btn-primary" id="confirmDel">Delete</button>
+                    </div>
+                    
+                </div>
+
+            <% } %>
+            
+        </div>
+        
+    </div>
+
+    <div class="card-body">
+        <form class="form" action="<%= formAction %>" method="POST">
+
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input <% if(consultantInfo.consultantID > 0)  {%> value="<%= consultantInfo.consultantFirst %>" <% } %> id="firstName" class="form-control" type="text" name="fname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input <% if(consultantInfo.consultantID > 0)  {%> value="<%= consultantInfo.consultantLast %>" <% } %> id="lastName" class="form-control" type="text" name="lname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="emailAddress">Email Address:</label>
+                <input <% if(consultantInfo.consultantID > 0)  {%> value="<%= consultantInfo.consultantEmail %>" <% } %> id="emailAddress" class="form-control" type="email" name="eaddress" required>
+            </div>
+
+            <br/>
+            
+            <div class="form-group">
+                <label for="createPassword">Create Password: </label>
+                <p style="font-size: 11px">(8+ Characters, 1+ Numbers, 1+ Capitals)</p>
+                <input id="createPassword" class="form-control" type="password" name="createpass" required>
+                <i id="passConfirm" class="material-icons text-success" data-toggle="tooltip" data-placement="right" title="Passwords Is Valid">check</i>
+                <i id="passInvalid" class="material-icons text-danger" data-toggle="tooltip" data-placement="right" title="Password Does Not Meet Complexity">close</i>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input id="confirmPassword" class="form-control" type="password" name="confpass" required>
+                <i id="passMatch" class="material-icons text-success" data-toggle="tooltip" data-placement="right" title="Passwords Match">check</i>
+                <i id="passMismatch" class="material-icons text-danger" data-toggle="tooltip" data-placement="right" title="Passwords Do Not Match">close</i>
+            </div>
+
+            <br/>
+
+            <a href="<%= cancelAction %>" class="formBtn btn btn-primary float-left">Cancel</a>
+            <button type="submit" class="formBtn btn btn-primary float-right">Save</button>
+    
+        </form>
+    </div>
+
+</div>
+
+<script src="/static/Scripts/reg_form.js"></script>

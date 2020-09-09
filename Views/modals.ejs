@@ -1,0 +1,91 @@
+<!--Modal for Editing Clients-->
+<div class="modal fade" id="clientPicklist">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Clients</h4>
+            </div>
+
+            <div class="modal-body">
+                <form method="POST" action="/clients/find">
+
+                    <div class="form-group">
+                        <label for="clientName">Select a Client</label>
+
+                        <select class="form-control" id="clientName" name="cname">
+                            <option value="0" selected disabled>Select</option>
+                        </select>
+                    </div>
+
+                    <br/>
+
+                    <button type="button" class="formBtn btn btn-primary float-left" data-dismiss="modal">Cancel</button>
+                    <button class="formBtn btn btn-primary float-right" type="submit">Edit</button>
+                
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Modal for Editing Projects-->
+<div class="modal fade" id="projectsPickList">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Projects</h4>
+            </div>
+
+            <div class="modal-body">
+                <form method="POST" action="/projects/find">
+
+                    <div class="form-group">
+                        <label for="projectName">Select a Project</label>
+
+                        <select class="form-control" id="projectName" name="pname">
+                            <option value="0" selected disabled>Select</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="formBtn btn btn-primary float-left" data-dismiss="modal">Cancel</button>
+                    <button class="formBtn btn btn-primary float-right" type="submit">Edit</button>
+                
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Modal for Editing Appointments-->
+<div class="modal fade" id="appointmentsPickList">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Appointments</h4>
+            </div>
+
+            <div class="modal-body">
+                <form method="POST" action="/appointments/find">
+
+                    <div class="form-group">
+                        <label for="appointmentName">Select an Appointment</label>
+
+                        <select class="form-control" id="appointmentName" name="aname">
+                            <option selected disabled>Select</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="formBtn btn btn-primary float-left" data-dismiss="modal">Cancel</button>
+                    <button class="formBtn btn btn-primary float-right" type="submit">Edit</button>
+                
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

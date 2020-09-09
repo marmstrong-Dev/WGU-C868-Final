@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="/static/Styles/reports.css">
+
+<%- include('navbar.ejs') %>
+
+<div id="searchWrapper">
+    <form class="form" method="POST" action="/reports/projects/filtered">
+
+            <div class="input-group">
+                <label class="form-control" for="searchCategory">Search By: </label>
+                <select class="form-control" id="searchCategory" name="category">
+                    <option selected disabled>Select</option>
+                    <option value="project_ID">Project ID</option>
+                    <option value="project_title">Project Title</option>
+                    <option value="project_desc">Project Description</option>
+                    <option value="project_phase">Project Phase</option>
+                    <option value="client_name">Client Name</option>
+                </select>
+            </div>
+    
+            <div class="input-group">
+                <input id="searchContext" class="form-control" type="text" name="context">
+                <button id="searchBtn" type="submit" class="btn btn-primary"><i class="material-icons text-white">search</i></button>
+            </div>
+
+            <% if(isFiltered === true) { %>
+                <div style="text-align: center"><a href="/reports/projects" class="text-primary">Remove Filters</a></div>
+            <% } %>
+
+    </form>
+</div>
+
+<div class="container-fluid">
+    <div id="rWrapper" class="row">
+
+        <% for(i=0; i < projectsList.length; i++) { %>
+
+            <div class="rEntry card col-lg-3">
+                <div class="card-body">
+        
+                    <ul class="list-group">
+                    
+                        <li class="list-group-item"><strong class="text-primary">ID: </strong><%= projectsList[i].project_ID %><span class="badge badge-primary badge-pill float-right"><%= projectsList[i].project_phase %></span></li>
+                        <li class="list-group-item"><strong>Title: </strong><%= projectsList[i].project_title %></li>
+                        <li class="list-group-item"><strong>Description: </strong><%= projectsList[i].project_desc %></li>
+                        <li class="list-group-item"><strong>Client: </strong><%= projectsList[i].client_name %></li>
+                        <li class="list-group-item"><strong>Start: </strong><%= projectsList[i].project_start %></li>
+                        <li class="list-group-item"><strong>End: </strong><%= projectsList[i].project_end %></li>
+                        <br/>
+                        <li class="list-group-item"><strong>Notes:</strong><br/><%= projectsList[i].project_notes %></li>
+                        <br/>
+                        <li class="list-group-item"><strong>Created On: </strong><%= projectsList[i].project_created %></li>
+                        <% if(projectsList[i].project_modified != "Invalid date") { %>
+                        <li class="list-group-item"><strong>Last Modified: </strong><%= projectsList[i].project_modified %></li>
+                        <% } %>
+
+                    </ul>
+        
+                </div>
+            </div>
+
+        <% } %>
+
+    </div>
+</div>

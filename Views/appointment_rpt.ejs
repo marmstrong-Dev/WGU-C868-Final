@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="/static/Styles/reports.css">
+
+<%- include('navbar.ejs') %>
+
+<div id="searchWrapper">
+    <form class="form" method="POST" action="/reports/appointments/filtered">
+
+            <div class="input-group">
+                <label class="form-control" for="searchCategory">Search By: </label>
+                <select class="form-control" id="searchCategory" name="category">
+                    <option selected disabled>Select</option>
+                    <option value="appointment_ID">Appointment ID</option>
+                    <option value="appointment_desc">Appointment Description</option>
+                    <option value="appointment_city">City</option>
+                    <option value="appointment_state">State</option>
+                    <option value="client_name">Client Name</option>
+                </select>
+            </div>
+    
+            <div class="input-group">
+                <input id="searchContext" class="form-control" type="text" name="context">
+                <button id="searchBtn" type="submit" class="btn btn-primary"><i class="material-icons text-white">search</i></button>
+            </div>
+
+            <% if(isFiltered === true) { %>
+                <div style="text-align: center"><a href="/reports/appointments" class="text-primary">Remove Filters</a></div>
+            <% } %>
+
+    </form>
+</div>
+
+<div class="container-fluid">
+    <div id="rWrapper" class="row">
+
+        <% for(i=0; i < appointmentsList.length; i++) { %>
+
+            <div class="rEntry card col-lg-3">
+                <div class="card-body">
+        
+                    <ul class="list-group">
+                    
+                        <li class="list-group-item"><strong class="text-primary">ID:</strong> <%= appointmentsList[i].appointment_ID %>
+                            <span class="badge badge-primary badge-pill float-right"><% if (Date.parse(appointmentsList[i].appointment_start) > Date.now()) { %>UPCOMING<% } %></span>
+                        </li>
+
+                        <li class="list-group-item"><strong>Description:</strong> <%= appointmentsList[i].appointment_desc %></li>
+                        <li class="list-group-item"><strong>Client Name:</strong> <%= appointmentsList[i].client_name %></li>
+                        <li class="list-group-item"><strong>Street:</strong> <%= appointmentsList[i].appointment_street %></li>
+
+                        <div class="row" style="padding-left: 15px; padding-right: 15px;">
+                            <li class="list-group-item col-8"><strong>City:</strong> <%= appointmentsList[i].appointment_city %></li>
+                            <li class="list-group-item col-4"><strong>State:</strong> <%= appointmentsList[i].appointment_state %></li>
+                        </div>
+
+                        <li class="list-group-item"><strong>Start Time:</strong> <%= appointmentsList[i].appointment_start %></li>
+                        <li class="list-group-item"><strong>End Time:</strong> <%= appointmentsList[i].appointment_end %></li>
+                        <br/>
+                        <li class="list-group-item"><strong>Notes:</strong><br/> <%= appointmentsList[i].appointment_notes %></li>
+                        <br/>
+                        <li class="list-group-item"><strong>Created On:</strong> <%= appointmentsList[i].appointment_created %></li>
+                        <% if(appointmentsList[i].appointment_modified != "Invalid date") { %>
+                        <li class="list-group-item"><strong>Last Modified:</strong> <%= appointmentsList[i].appointment_modified %></li>
+                        <% } %>
+                    </ul>
+        
+                </div>
+            </div>
+
+        <% } %>
+
+    </div>
+</div>
