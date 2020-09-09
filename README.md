@@ -1,10 +1,10 @@
-#WGU-C868-Final
+# WGU-C868-Final
 
 Project for C868 - Capstone Project -- 
 Built in Visual Studio Code -- 
 Node.JS version 12.18.0
 
-##Requirements
+## Requirements
 __A. Write a comprehensive summary that addresses the following requirements:
 * the business problem or opportunity you are solving for, including a description of the customers and why this application will fulfill their needs
 * existing gaps in the software application you are replacing or modifying (if applicable)
