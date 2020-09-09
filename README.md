@@ -2,7 +2,7 @@
 
 Project for C868 - Capstone Project\
 Built in Visual Studio Code\
-Node.JS version 12.18.0\
+Node.JS version 12.18.0
 
 ## Requirements
 __A. Write a comprehensive summary that addresses the following requirements:__
