@@ -5,7 +5,7 @@ Built in Visual Studio Code --
 Node.JS version 12.18.0
 
 ## Requirements
-_A. Write a comprehensive summary that addresses the following requirements:
+__A. Write a comprehensive summary that addresses the following requirements:__
 * the business problem or opportunity you are solving for, including a description of the customers and why this application will fulfill their needs
 * existing gaps in the software application you are replacing or modifying (if applicable)
 * the software development life cycle methodology you use to guide and support software development activities
@@ -17,7 +17,7 @@ _A. Write a comprehensive summary that addresses the following requirements:
 
 
 
-_B. Design and develop a fully functional software application that addresses your identified business problem or organizational need. Include each of the following attributes as they are the minimum required elements for the application:
+__B. Design and develop a fully functional software application that addresses your identified business problem or organizational need. Include each of the following attributes as they are the minimum required elements for the application:__
 * one of the following application types: mobile, web, or stand-alone application
 * code including inheritance, polymorphism, and encapsulation
 * search functionality with multiple row results and displays
@@ -31,7 +31,7 @@ _B. Design and develop a fully functional software application that addresses yo
 
 
 
-_C. Create each of the following forms of documentation for the application you have developed:
+__C. Create each of the following forms of documentation for the application you have developed:__
 * a design document including a class diagram and design diagram
 * a test plan for a unit test, including screenshots
 * the results of the unit test based on the provided test plan, including screenshots
@@ -40,6 +40,6 @@ _C. Create each of the following forms of documentation for the application you 
 * user guide for setting up and running the application for maintenance purposes
 * user guide for running the application from a user perspective
 
-_D. Acknowledge sources, using in-text citations and references, for content that is quoted, paraphrased, or summarized.
+__D. Acknowledge sources, using in-text citations and references, for content that is quoted, paraphrased, or summarized.__
 
-_E. Demonstrate professional communication in the content and presentation of your submission.
+__E. Demonstrate professional communication in the content and presentation of your submission.__
